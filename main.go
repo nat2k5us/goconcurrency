@@ -100,6 +100,7 @@ func WaitGroupTest() {
 		fmt.Println(item)
 	}
 }
+
 func WGTest2() {
 
 	var wg sync.WaitGroup
@@ -126,6 +127,7 @@ func asyncGo() {
 	fmt.Scanln()
 	fmt.Println("done")
 }
+
 func asyncGo2() {
 	a := 1
 	b := 2
@@ -193,50 +195,72 @@ func checkDNS(respond chan<- string, wg *sync.WaitGroup, query string, ns string
 	respond <- fmt.Sprintf("%s responded to query: %s", ns, query)
 }
 
-func AsyncSequentialCallToRoutines() {
-	var (
-		firstUserData, secondUserData, thirdUserData string
-		wg                                           sync.WaitGroup
-	)
+func AsyncSequentialCallToRoutines(wg sync.WaitGroup) {
 	wg.Add(3)
-
+	var firstUserData, secondUserData, thirdUserData string
 	// First DB call
 	go func() {
-		defer wg.Done()
+
 		firstUserData = firstDbCall()
+		defer wg.Done()
 	}()
 
 	// Second DB call
 	go func() {
-		defer wg.Done()
+
 		secondUserData = secondDbCall()
+		defer wg.Done()
 	}()
 
 	// Third DB call
 	go func() {
-		defer wg.Done()
+
 		thirdUserData = thirdDbCall()
+		defer wg.Done()
 	}()
 
 	wg.Wait()
 
 	println(firstUserData, secondUserData, thirdUserData)
 }
+
 // Group 1
 func firstDbCall() string {
-	time.Sleep(time.Duration(rand.Intn(10)) * time.Second)
+
+	time.Sleep(time.Duration(15 * time.Second))
 	return "UserId1"
 }
 
 func secondDbCall() string {
-	time.Sleep(time.Duration(rand.Intn(10)) * time.Second)
+
+	time.Sleep(time.Duration(10 * time.Second))
 	return "UserId2"
 }
 
 func thirdDbCall() string {
-	time.Sleep(time.Duration(rand.Intn(10)) * time.Second)
+
+	time.Sleep(time.Duration(5 * time.Second))
 	return "UserId3"
 }
+
+func main() {
+
+	runtime.GOMAXPROCS(2)
+	//asyncGo()
+	//asyncGo2()
+	//asyncUsingChannelsToAvoidRaceConditions()
+	//WaitingOnAllRoutinesToFinish()
+
+	AsyncSequentialCallToRoutines(wgGlobal)
+
+	//AsyncSequenciallyUsingChannelsAndSlices()
+	// WaitGroupTest()
+	//WGTest2()
+	//TestParrallProc()
+	//GetOrdersParallel()
+	//GetQuotesParallel()
+}
+
 // Group 2
 func firstDBCall(resultSlice *[]string, doneChannel chan bool) {
 	(*resultSlice)[0] = "1"
@@ -264,21 +288,6 @@ func AsyncSequenciallyUsingChannelsAndSlices() {
 		<-doneChannel
 	}
 	fmt.Println(resultSlice)
-}
-func main() {
-
-	runtime.GOMAXPROCS(2)
-	//asyncGo()
-	//asyncGo2()
-	//asyncUsingChannelsToAvoidRaceConditions()
-	//WaitingOnAllRoutinesToFinish()
-	AsyncSequentialCallToRoutines()
-	//AsyncSequenciallyUsingChannelsAndSlices()
-	// WaitGroupTest()
-	//WGTest2()
-	//TestParrallProc()
-	//GetOrdersParallel()
-	//GetQuotesParallel()
 }
 
 func GetQuotesParallel() {
