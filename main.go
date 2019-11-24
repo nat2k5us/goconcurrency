@@ -19,11 +19,11 @@ func GetOrders(account string) {
 	if err != nil {
 		// handle err
 	}
-	token := " Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJVUTFNakpET0VSQlF6UTNNamt5T1RBM1JEVXlRa1kzTURaRU5FRkVORVZGUWpCRk9FRkZSQSJ9.eyJodHRwOi8vdHJhZGVzdGF0aW9uLmNvbS9pZ25vcmVfZHVhbF9sb2dvbiI6InRydWUiLCJodHRwOi8vdHJhZGVzdGF0aW9uLmNvbS9sZWdhY3lfYXBpX2tleSI6IkUyRkM5QTY5LTc5OEUtNEIzNS1BOTNCLTI3RTlDODUzRjdCQiIsImh0dHA6Ly90cmFkZXN0YXRpb24uY29tL3VzZXJuYW1lIjoib21nbWtvYiIsImh0dHA6Ly90cmFkZXN0YXRpb24uY29tL2ZkY25faWQiOiIxOTI5OTc3OTUiLCJodHRwOi8vdHJhZGVzdGF0aW9uLmNvbS9jcnlwdG9faWQiOiIxMjMxMjUxMjUxLUFCQyIsImlzcyI6Imh0dHBzOi8vdHJhZGVzdGF0aW9uLXFhLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZDk0ZGNmYTM0MTA3MTBkNGMzYzlhMWUiLCJhdWQiOlsiaHR0cHM6Ly9hcGkudHJhZGVzdGF0aW9uLmlvIiwiaHR0cHM6Ly90cmFkZXN0YXRpb24tcWEuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTU3NDM3MzMxNSwiZXhwIjoxNTc0Mzc0NTE1LCJhenAiOiJhY2JWVzJEcmlvUEEzSFZobHB6M0h1dG5XSEhOejMxRiIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgTWFya2V0RGF0YSBSZWFkQWNjb3VudCBUcmFkZSBDcnlwdG8ifQ.HlZ4OSpsBTnEDfacH66ilut-Gad2w-AmrGZN-jbMHcWHDH1vae46_g4j_hf-hxP-MVFMcPjkmwLi6eJDrwBcx_kPzj4NFPdZymLccfma9RCDc1XGSP8dUOt3QBMQhf5QSmEJHsgulZtgqM4HXgTJIE-dKcpzAfgSv0NRSQ6xOe0hiSscwnxV--ziZ-vM9q-EBdo8w_BsRIdQ4mPNKiNQPSKxYt11C-_lpYmlTjgvJdAZUWyCfsSrA7lSIHXxObwrqqDfrlkUDcJwq-oGv5Nx0dKPJ6_Jdscl8Cb6WYUjhSo0L5yX9cUHmWsrKvL8KwjPorYdkDhqGHeoRQvMFncAsQ"
+	token := " Bearer xxx"
 	req.Header.Set("Authorization", token)
 	req.Header.Set("Cache-Control", "no-cache")
 	req.Header.Set("Postman-Token", "7b0e630f-00f3-ca93-df46-5b3ccfb77c4a")
-	req.Header.Set("X-Ts-Auth-User-Id", "omgmkob")
+	req.Header.Set("X-Ts-Auth-User-Id", "omgxxxx")
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -42,7 +42,7 @@ func GetOrders(account string) {
 }
 
 func GetOrdersParallel() {
-	accounts := []string{"mkobCrypto", "1929977951%20QA"}
+	accounts := []string{"mkxxxxxx", "1929977951%20QA"}
 	startAcc := time.Now()
 	accountCount := 0
 	for _, acct := range accounts {
