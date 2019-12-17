@@ -34,7 +34,7 @@ func GetToken() string {
 	}
 	client := &http.Client{Transport: tr}
 
-	body := strings.NewReader(`grant_type=http://auth0.com/oauth/grant-type/password-realm&username=omgnbon@tradestation.com&password=xxxxxxxxx&audience=https://api.tradestation.io&scope=openid+profile+MarketData+ReadAccount+Trade+HotLists+News+Matrix+Crypto&client_id=GbHvpF6vhzMA4xoLrv9t9UBDdl2fTUrI&client_secret=kJclVpoM76vmXiabXQsp-aakqwPL1hii5B9hC8kGrEjw1pwPPcejPi15a4cP9NFj&realm=CryptoDEVAuth0DBTemp`)
+	body := strings.NewReader(`....`)
 	req, err := http.NewRequest("POST", "https://tradestation-qa.auth0.com/oauth/token", body)
 	if err != nil {
 		// handle err
